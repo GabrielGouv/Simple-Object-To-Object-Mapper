@@ -8,7 +8,7 @@ IMapper mapper = new Mapper();
 IMapper mapper = new Mapper(new MyConverter());
 
 // Automatic converter:
-// SOOM will try to automatically convert your source class fields to destination class fields.
+// SOOM will try to automatically convert your source class to destination class.
 DestinationObject dest = mapper.map(sourceObject).to(DestinationObject.class);
 
 // Using specific converter
