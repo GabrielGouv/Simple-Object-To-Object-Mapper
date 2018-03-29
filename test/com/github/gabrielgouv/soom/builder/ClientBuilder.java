@@ -1,7 +1,7 @@
-package com.github.gabrielgouv.builder;
+package com.github.gabrielgouv.soom.builder;
 
-import com.github.gabrielgouv.model.Address;
-import com.github.gabrielgouv.model.Client;
+import com.github.gabrielgouv.soom.model.Address;
+import com.github.gabrielgouv.soom.model.Client;
 
 public class ClientBuilder {
 

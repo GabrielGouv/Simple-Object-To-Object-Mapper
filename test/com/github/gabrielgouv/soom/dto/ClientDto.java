@@ -1,4 +1,4 @@
-package com.github.gabrielgouv.dto;
+package com.github.gabrielgouv.soom.dto;
 
 public class ClientDto {
 

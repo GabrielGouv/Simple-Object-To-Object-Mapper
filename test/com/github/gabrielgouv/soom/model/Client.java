@@ -1,4 +1,4 @@
-package com.github.gabrielgouv.model;
+package com.github.gabrielgouv.soom.model;
 
 public class Client {
 

@@ -1,16 +1,16 @@
-package com.github.gabrielgouv.test;
+package com.github.gabrielgouv.soom.test;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import com.github.gabrielgouv.builder.AddressBuilder;
-import com.github.gabrielgouv.builder.ClientBuilder;
-import com.github.gabrielgouv.dto.ClientDto;
-import com.github.gabrielgouv.model.Client;
+import com.github.gabrielgouv.soom.builder.AddressBuilder;
+import com.github.gabrielgouv.soom.builder.ClientBuilder;
 import com.github.gabrielgouv.soom.core.IMapper;
 import com.github.gabrielgouv.soom.core.Mapper;
+import com.github.gabrielgouv.soom.dto.ClientDto;
+import com.github.gabrielgouv.soom.model.Client;
 
 public class ObjectToObjectTest {
 

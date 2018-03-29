@@ -1,4 +1,4 @@
-package com.github.gabrielgouv.test;
+package com.github.gabrielgouv.soom.test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,8 +11,8 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.github.gabrielgouv.builder.ClientBuilder;
-import com.github.gabrielgouv.model.Client;
+import com.github.gabrielgouv.soom.builder.ClientBuilder;
+import com.github.gabrielgouv.soom.model.Client;
 import com.github.gabrielgouv.soom.util.ReflectionUtil;
 
 public class ReflectionUtilTest {
