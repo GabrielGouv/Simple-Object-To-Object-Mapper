@@ -12,8 +12,8 @@ public class StandardConverter implements IConverter {
 
 		T destinationInstance = ReflectionUtil.instantiateClass(destinantion);
 
-		List<Field> sourceFields = ReflectionUtil.getAllFields(source);
-		List<Field> destinationFields = ReflectionUtil.getAllFields(destinationInstance);
+		List<Field> sourceFields = ReflectionUtil.getFields(source);
+		List<Field> destinationFields = ReflectionUtil.getFields(destinationInstance);
 
 		sourceFields.forEach(sourceField -> {
 			destinationFields.forEach(destinationField -> {
