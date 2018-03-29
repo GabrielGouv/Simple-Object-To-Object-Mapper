@@ -1,4 +1,4 @@
-package com.github.gabrielgouv;
+package com.github.gabrielgouv.test;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,6 +9,8 @@ import com.github.gabrielgouv.builder.AddressBuilder;
 import com.github.gabrielgouv.builder.ClientBuilder;
 import com.github.gabrielgouv.dto.ClientDto;
 import com.github.gabrielgouv.model.Client;
+import com.github.gabrielgouv.soom.core.IMapper;
+import com.github.gabrielgouv.soom.core.Mapper;
 
 public class ObjectToObjectTest {
 
@@ -32,12 +34,13 @@ public class ObjectToObjectTest {
 	@Test
 	public void convertObjectToObject() {
 		
-		Mapper mapper = new Mapper();
+		IMapper mapper = new Mapper();
 		ClientDto dto = mapper.map(client).to(ClientDto.class);
 		
 		assertEquals(client.getId(), dto.getId());
 		assertEquals(client.getName(), dto.getName());
 		assertEquals(client.getEmail(), dto.getEmail());
+		//assertEquals(client.getAddress().getCity(), dto.getCity());
 		
 	}
 	

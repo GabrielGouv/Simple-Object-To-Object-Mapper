@@ -1,4 +1,4 @@
-package com.github.gabrielgouv;
+package com.github.gabrielgouv.test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,7 +13,7 @@ import org.junit.Test;
 
 import com.github.gabrielgouv.builder.ClientBuilder;
 import com.github.gabrielgouv.model.Client;
-import com.github.gabrielgouv.util.ReflectionUtil;
+import com.github.gabrielgouv.soom.util.ReflectionUtil;
 
 public class ReflectionUtilTest {
 
