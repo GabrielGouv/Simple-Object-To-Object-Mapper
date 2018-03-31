@@ -5,10 +5,25 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public final class ReflectionUtil {
+	
+	private static final Map<Class<?>, Class<?>> TYPE_MAP = new HashMap<>();
+	
+	static {
+		TYPE_MAP.put(Byte.class, byte.class);
+		TYPE_MAP.put(Short.class, short.class);
+		TYPE_MAP.put(Integer.class, int.class);
+		TYPE_MAP.put(Long.class, long.class);
+		TYPE_MAP.put(Float.class, float.class);
+		TYPE_MAP.put(Double.class, double.class);
+		TYPE_MAP.put(Boolean.class, boolean.class);
+		TYPE_MAP.put(Character.class, char.class);
+	}
 	
 	public static List<Field> getFields(Object object) {
 		return getFields(object.getClass());
@@ -113,31 +128,46 @@ public final class ReflectionUtil {
 	}
 	
 	public static Method getGetterByFieldName(Class<?> clazz, String fieldName) {
-		return getMethodByName(clazz, "get" + StringUtil.capitalize(fieldName));
+		return getMethod(clazz, "get" + StringUtil.capitalize(fieldName));
 	}
 	
 	public static <T> Method getSetterByFieldName(Object object, String fieldName, T parameter) {
 		return getSetterByFieldName(object.getClass(), fieldName, parameter);
 	}
 	
-	public static <T> Method getSetterByFieldName(Class<?> clazz, String fieldName, T parameter) {
-		return getMethodByName(clazz, "set" + StringUtil.capitalize(fieldName), parameter.getClass());
+	public static <T> Method getSetterByFieldName(Class<?> clazz, String fieldName, T parameter) {	
+		return getMethod(clazz, "set" + StringUtil.capitalize(fieldName), parameter.getClass());
 	}
 	
 	public static Method getMethodByName(Object object, String name, Class<?> ... parameters) {
-		return getMethodByName(object.getClass(), name, parameters);
+		return getMethod(object.getClass(), name, parameters);
 	}
 	
-	public static Method getMethodByName(Class<?> clazz, String name, Class<?> ... parameters) {
+	// refactor
+	public static Method getMethod(Class<?> clazz, String name, Class<?> ... parameters) {
 		try {
 			if (parameters.length > 0) {
 				return clazz.getMethod(name, parameters);
 			} else {
 				return clazz.getMethod(name);
 			}
-			
-		} catch (NoSuchMethodException | SecurityException e) {
-			//e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			Class<?>[] aaa = parameters;
+			for (int i = 0; i < aaa.length; i++) {
+				aaa[i] = TYPE_MAP.get(aaa[i]);
+			}
+			try {
+				if (parameters.length > 0) {
+					return clazz.getMethod(name, aaa);
+				} 
+			} catch (NoSuchMethodException ex) {
+				
+			} catch (SecurityException ex) {
+				e.printStackTrace();
+			}
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
 		}
 		return null;
 	}
@@ -162,7 +192,10 @@ public final class ReflectionUtil {
 	public static Object invokeMethodAndGetReturn(Object object, Method method, Object ... parameters) {
 		try {
 			if (parameters.length > 0) {
-				return method.invoke(object, parameters);
+				
+				Object returnn = method.invoke(object, parameters);
+				
+				return returnn;
 			} else {
 				return method.invoke(object);
 			}
@@ -177,7 +210,7 @@ public final class ReflectionUtil {
 	}
 	
 	public static Object getTypeFromGetterByFieldName(Class<?> clazz, String fieldName) {
-		return getMethodByName(clazz, "get" + StringUtil.capitalize(fieldName)).getReturnType();
+		return getMethod(clazz, "get" + StringUtil.capitalize(fieldName)).getReturnType();
 	}
-	
+		
 }

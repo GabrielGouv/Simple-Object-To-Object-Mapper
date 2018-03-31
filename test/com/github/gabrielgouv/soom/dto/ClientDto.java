@@ -2,12 +2,12 @@ package com.github.gabrielgouv.soom.dto;
 
 public class ClientDto {
 
-	private Integer clientId;
+	private int clientId;
 	private String name;
 	private String email;
-	private Integer addressId;
+	private int addressId;
 	private String city;
-	private String street;
+	private String addressStreet;
 	private String number;
 
 	public Integer getClientId() {
@@ -34,11 +34,11 @@ public class ClientDto {
 		this.email = email;
 	}
 
-	public Integer getAddressId() {
+	public int getAddressId() {
 		return addressId;
 	}
 
-	public void setAddressId(Integer addressId) {
+	public void setAddressId(int addressId) {
 		this.addressId = addressId;
 	}
 
@@ -50,12 +50,12 @@ public class ClientDto {
 		this.city = city;
 	}
 
-	public String getStreet() {
-		return street;
+	public String getAddressStreet() {
+		return addressStreet;
 	}
 
-	public void setStreet(String street) {
-		this.street = street;
+	public void setAddressStreet(String street) {
+		this.addressStreet = street;
 	}
 
 	public String getNumber() {

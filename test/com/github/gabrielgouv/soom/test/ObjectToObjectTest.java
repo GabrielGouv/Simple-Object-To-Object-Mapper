@@ -43,8 +43,8 @@ public class ObjectToObjectTest {
 		assertEquals(client.getAddress().getCity(), dto.getCity());
 		assertEquals(client.getAddress().getId(), dto.getAddressId());
 		assertEquals(client.getAddress().getNumber(), dto.getNumber());
-		assertEquals(client.getAddress().getStreet(), dto.getStreet());
-		
+		assertEquals(client.getAddress().getStreet(), dto.getAddressStreet());
+	
 	}
 	
 }

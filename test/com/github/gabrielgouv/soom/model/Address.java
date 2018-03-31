@@ -2,7 +2,7 @@ package com.github.gabrielgouv.soom.model;
 
 public class Address {
 
-	private Integer id;
+	private int id;
 	private String city;
 	private String street;
 	private String number;
@@ -11,14 +11,14 @@ public class Address {
 		
 	}
 
-	public Address(Integer id, String city, String street, String number) {
+	public Address(int id, String city, String street, String number) {
 		this.id = id;
 		this.city = city;
 		this.street = street;
 		this.number = number;
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 

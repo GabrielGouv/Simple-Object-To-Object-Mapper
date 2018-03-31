@@ -11,7 +11,7 @@ public class Client {
 		
 	}
 	
-	public Client(int id, String name, String email, Address address) {
+	public Client(Integer id, String name, String email, Address address) {
 		this.id = id;
 		this.name = name;
 		this.email = email;

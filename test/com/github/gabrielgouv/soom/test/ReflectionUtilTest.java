@@ -117,7 +117,7 @@ public class ReflectionUtilTest {
 	
 	@Test
 	public void getSetterByFieldNameTest() {
-		Method method = ReflectionUtil.getSetterByFieldName(client, "id", 32);
+		Method method = ReflectionUtil.getSetterByFieldName(client, "id", int.class);
 		assertEquals("setId", method.getName());
 	}
 	
@@ -130,7 +130,7 @@ public class ReflectionUtilTest {
 	
 	@Test
 	public void getMethodByNameUsingInvalidNameTest() {
-		Method method = ReflectionUtil.getMethodByName(client, "getEmil");
+		Method method = ReflectionUtil.getMethodByName(client, "getEmail");
 		assertNull(method);
 	}
 	
