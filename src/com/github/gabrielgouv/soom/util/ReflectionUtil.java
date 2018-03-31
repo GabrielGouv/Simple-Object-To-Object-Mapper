@@ -5,7 +5,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -171,6 +170,14 @@ public final class ReflectionUtil {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public static Object getTypeFromGetterByFieldName(Object object, String fieldName) {
+		return getTypeFromGetterByFieldName(object.getClass(), fieldName);
+	}
+	
+	public static Object getTypeFromGetterByFieldName(Class<?> clazz, String fieldName) {
+		return getMethodByName(clazz, "get" + StringUtil.capitalize(fieldName)).getReturnType();
 	}
 	
 }

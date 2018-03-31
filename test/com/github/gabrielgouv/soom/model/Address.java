@@ -2,26 +2,27 @@ package com.github.gabrielgouv.soom.model;
 
 public class Address {
 
-	private int id;
+	private Integer id;
 	private String city;
 	private String street;
 	private String number;
 
 	public Address() {
+		
 	}
 
-	public Address(int id, String city, String street, String number) {
+	public Address(Integer id, String city, String street, String number) {
 		this.id = id;
 		this.city = city;
 		this.street = street;
 		this.number = number;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

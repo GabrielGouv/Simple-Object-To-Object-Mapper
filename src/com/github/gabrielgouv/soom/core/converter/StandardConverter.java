@@ -1,37 +1,61 @@
 package com.github.gabrielgouv.soom.core.converter;
 
-import java.lang.reflect.Field;
 import java.util.List;
 
 import com.github.gabrielgouv.soom.util.ReflectionUtil;
+import com.github.gabrielgouv.soom.util.StringUtil;
 
 public class StandardConverter implements IConverter {
 
 	@Override
-	public <T> T convert(Object source, Class<T> destinantion) {
+	public <T> T convert(Object source, Class<T> destination) {
 
-		T destinationInstance = ReflectionUtil.instantiateClass(destinantion);
-
-		List<Field> sourceFields = ReflectionUtil.getFields(source);
-		List<Field> destinationFields = ReflectionUtil.getFields(destinationInstance);
-
-		sourceFields.forEach(sourceField -> {
-			destinationFields.forEach(destinationField -> {
-				transferValue(source, destinationInstance, sourceField, destinationField);
-			});
-		});
-
+		T destinationInstance = ReflectionUtil.instantiateClass(destination);
+		process(source, destinationInstance);
+		
 		return destinationInstance;
 		
 	}
-
-	private <T> void transferValue(Object source, T instance, Field sourceField, Field destinationField) {
+	
+	private void process(Object source, Object destination) {
+		List<String> fieldNamesFromSource = ReflectionUtil.getFieldNamesFromGettersAndSetters(source);
+		List<String> fieldNamesFromDestination = ReflectionUtil.getFieldNamesFromGettersAndSetters(destination);
 		
-		if (sourceField.getName().equals(destinationField.getName())) {
-			Object objectFieldValue = ReflectionUtil.invokeGetterByFieldName(source, sourceField.getName());
-			ReflectionUtil.invokeSetterByFieldName(instance, destinationField.getName(), objectFieldValue);
+		for (String nameFromDestination : fieldNamesFromDestination) {
+			for (String nameFromSource : fieldNamesFromSource) {
+				
+				if (nameFromDestination.equals(nameFromSource)) {
+					transferValue(source, destination, nameFromSource, nameFromDestination);
+					break;
+				} else {
+					
+					String className = source.getClass().getSimpleName().toLowerCase();
+	
+					if (nameFromDestination.startsWith(className) && nameFromDestination.substring(className.length()).equalsIgnoreCase(nameFromSource)) {
+						transferValue(source, destination, nameFromSource, nameFromDestination);
+						break;
+					} else {
+						
+						Object returnValue = ReflectionUtil.invokeGetterByFieldName(source, nameFromSource);
+						className = StringUtil.uncapitalize(returnValue.getClass().getSimpleName());
+						
+						if (nameFromDestination.startsWith(className)) {
+							Object newSource = ReflectionUtil.invokeGetterByFieldName(source, nameFromSource);
+							process(newSource, destination);
+							break;
+						}
+						
+					}
+					
+				}
+				
+			}
 		}
-		
+	}
+	
+	private void transferValue(Object source, Object destination, String sourceFieldName, String destinationFieldName) {
+		Object value = ReflectionUtil.invokeGetterByFieldName(source, sourceFieldName);
+		ReflectionUtil.invokeSetterByFieldName(destination, destinationFieldName, value);
 	}
 
 }

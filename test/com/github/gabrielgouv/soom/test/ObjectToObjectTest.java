@@ -37,10 +37,13 @@ public class ObjectToObjectTest {
 		IMapper mapper = new Mapper();
 		ClientDto dto = mapper.map(client).to(ClientDto.class);
 		
-		assertEquals(client.getId(), dto.getId());
+		assertEquals(client.getId(), dto.getClientId());
 		assertEquals(client.getName(), dto.getName());
 		assertEquals(client.getEmail(), dto.getEmail());
-		//assertEquals(client.getAddress().getCity(), dto.getCity());
+		assertEquals(client.getAddress().getCity(), dto.getCity());
+		assertEquals(client.getAddress().getId(), dto.getAddressId());
+		assertEquals(client.getAddress().getNumber(), dto.getNumber());
+		assertEquals(client.getAddress().getStreet(), dto.getStreet());
 		
 	}
 	

@@ -2,7 +2,7 @@ package com.github.gabrielgouv.soom.dto;
 
 public class ClientDto {
 
-	private Integer id;
+	private Integer clientId;
 	private String name;
 	private String email;
 	private Integer addressId;
@@ -10,12 +10,12 @@ public class ClientDto {
 	private String street;
 	private String number;
 
-	public Integer getId() {
-		return id;
+	public Integer getClientId() {
+		return clientId;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setClientId(Integer id) {
+		this.clientId = id;
 	}
 
 	public String getName() {
