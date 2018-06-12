@@ -12,5 +12,7 @@ IMapper mapper = new Mapper(new MyConverter());
 DestinationObject dest = mapper.map(sourceObject).to(DestinationObject.class);
 
 // Using specific converter
-DestinationObject dest = mapper.map(sourceObject).usingConverter(new MyConverter()).to(DestinationObject.class);
+DestinationObject dest = mapper.map(sourceObject)
+                               .usingConverter(new MyConverter())
+                               .to(DestinationObject.class);
 ```
